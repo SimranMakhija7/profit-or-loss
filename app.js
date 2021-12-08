@@ -27,15 +27,18 @@ tellBtn.addEventListener("click",()=>{
         initialValue = Number(initialInput.value),
         quantity     = Number(qtyInput.value),
         currentValue = Number(currInput.value);
-        let diff = currentValue - initialValue,
-            absolute = quantity*diff,
-            percent = (diff/initialValue)*100,
-            profit = false;
-        if(diff > 0) profit = true;
-        if(profit){
-            populateOutput("Yay! You made a profit of " + absolute + " and the percent is "+ percent)
-        }else{
-            populateOutput("Oh no! You incurred a loss of " + ((-1)*absolute) + " and the percent is "+ ((-1)*percent))
+        if(initialValue<0 || quantity<0 || currentValue<0) populateOutput("<span id=\"error\">Please provide valid input</span>");
+        else{
+            let diff = currentValue - initialValue,
+                absolute = quantity*diff,
+                percent = (diff/initialValue)*100,
+                profit = false;
+            if(diff > 0) profit = true;
+            if(profit){
+                populateOutput("Yay! You made a profit of " + absolute + " and the percent is "+ percent)
+            }else{
+                populateOutput("Oh no! You incurred a loss of " + ((-1)*absolute) + " and the percent is "+ ((-1)*percent))
+            }
         }
     }
 })
